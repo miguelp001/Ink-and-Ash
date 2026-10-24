@@ -237,9 +237,13 @@ namespace InkAndAsh.Prologue.Editor
             cmCam.Target.TrackingTarget = target;
             cmCam.Target.LookAtTarget = target;
 
-            // Position behind player shoulder
-            vcamObj.transform.position = target.position + new Vector3(0.8f, 2.2f, -3.8f);
-            vcamObj.transform.LookAt(target.position + Vector3.up * 1.4f);
+            // Elevated cozy JRPG 45-degree isometric follow
+            CinemachineFollow follow = vcamObj.AddComponent<CinemachineFollow>();
+            follow.FollowOffset = new Vector3(0f, 6.5f, -6.5f);
+            vcamObj.AddComponent<CinemachineHardLookAt>();
+
+            vcamObj.transform.position = target.position + follow.FollowOffset;
+            vcamObj.transform.LookAt(target.position + Vector3.up * 1.0f);
         }
 
         private static Interactable CreateInteractable(string name, Vector3 pos, string prompt, Color color, bool isCylinder = false, bool isDoor = false)

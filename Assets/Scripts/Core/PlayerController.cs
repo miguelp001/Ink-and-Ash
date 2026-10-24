@@ -15,7 +15,7 @@ namespace InkAndAsh.Core
         [SerializeField] private LayerMask _groundLayers = ~0;
 
         [Header("Interaction Magnetism")]
-        [SerializeField] private float _interactionMagnetRadius = 4.0f;
+        [SerializeField] private float _interactionMagnetRadius = 1.2f;
         [SerializeField] private LayerMask _interactionLayers = ~0;
 
         [Header("Visual Feedback")]
@@ -59,6 +59,12 @@ namespace InkAndAsh.Core
 
         private void HandlePointerInput()
         {
+            if (UnityEngine.EventSystems.EventSystem.current != null && 
+                UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             bool pointerDown = false;
             Vector2 screenPos = Vector2.zero;
 
@@ -67,33 +73,63 @@ namespace InkAndAsh.Core
                 pointerDown = true;
                 screenPos = Input.mousePosition;
             }
-            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            else if (Input.touchCount > 0)
             {
-                pointerDown = true;
-                screenPos = Input.GetTouch(0).position;
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    if (UnityEngine.EventSystems.EventSystem.current != null && 
+                        UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                    {
+                        return;
+                    }
+                    pointerDown = true;
+                    screenPos = touch.position;
+                }
             }
 
             if (!pointerDown || _mainCamera == null) return;
 
             Ray ray = _mainCamera.ScreenPointToRay(screenPos);
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, _groundLayers | _interactionLayers))
+            RaycastHit[] hits = Physics.RaycastAll(ray, 150f, _groundLayers | _interactionLayers);
+            if (hits == null || hits.Length == 0) return;
+
+            Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+            RaycastHit validHit = default;
+            bool foundValidHit = false;
+
+            for (int i = 0; i < hits.Length; i++)
             {
-                // Check for direct click on an Interactable or nearby magnetism
-                Interactable target = hit.collider.GetComponentInParent<Interactable>();
-                if (target == null)
+                var h = hits[i];
+                // Ignore the player's own colliders
+                if (h.collider.transform.root == transform || h.collider.gameObject == gameObject)
                 {
-                    target = FindNearestInteractable(hit.point, _interactionMagnetRadius);
+                    continue;
                 }
 
-                if (target != null)
-                {
-                    SetInteractionTarget(target);
-                }
-                else
-                {
-                    ClearPendingInteraction();
-                    MoveToDestination(hit.point);
-                }
+                validHit = h;
+                foundValidHit = true;
+                break;
+            }
+
+            if (!foundValidHit) return;
+
+            // Check for direct click on an Interactable or nearby magnetism
+            Interactable target = validHit.collider.GetComponentInParent<Interactable>();
+            if (target == null)
+            {
+                target = FindNearestInteractable(validHit.point, _interactionMagnetRadius);
+            }
+
+            if (target != null)
+            {
+                SetInteractionTarget(target);
+            }
+            else
+            {
+                ClearPendingInteraction();
+                MoveToDestination(validHit.point);
             }
         }
 
@@ -114,6 +150,7 @@ namespace InkAndAsh.Core
                 Vector3 targetPoint = transform.position + moveDir * 2.0f;
                 if (NavMesh.SamplePosition(targetPoint, out NavMeshHit navHit, 2.0f, NavMesh.AllAreas))
                 {
+                    _agent.isStopped = false;
                     _agent.SetDestination(navHit.position);
                 }
             }
@@ -121,9 +158,10 @@ namespace InkAndAsh.Core
 
         public void MoveToDestination(Vector3 destination)
         {
-            if (NavMesh.SamplePosition(destination, out NavMeshHit navHit, 3.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(destination, out NavMeshHit navHit, 5.0f, NavMesh.AllAreas))
             {
                 _agent.stoppingDistance = 0.2f;
+                _agent.isStopped = false;
                 _agent.SetDestination(navHit.position);
                 SpawnDestinationMarker(navHit.position);
             }
@@ -133,6 +171,7 @@ namespace InkAndAsh.Core
         {
             _pendingInteractable = interactable;
             _agent.stoppingDistance = interactable.InteractionDistance * 0.85f;
+            _agent.isStopped = false;
             _agent.SetDestination(interactable.InteractionPosition);
             SpawnDestinationMarker(interactable.InteractionPosition);
         }
