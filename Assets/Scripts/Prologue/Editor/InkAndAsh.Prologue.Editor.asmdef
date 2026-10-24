@@ -1,0 +1,26 @@
+{
+    "name": "InkAndAsh.Prologue.Editor",
+    "rootNamespace": "InkAndAsh.Prologue.Editor",
+    "references": [
+        "InkAndAsh.Core",
+        "InkAndAsh.Data",
+        "InkAndAsh.Combat",
+        "InkAndAsh.Narrative",
+        "InkAndAsh.UI",
+        "InkAndAsh.Prologue",
+        "Unity.TextMeshPro",
+        "Unity.Cinemachine",
+        "Unity.AI.Navigation"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
