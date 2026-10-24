@@ -1,7 +1,9 @@
 {
     "name": "InkAndAsh.Core",
     "rootNamespace": "InkAndAsh.Core",
-    "references": [],
+    "references": [
+        "Unity.InputSystem"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

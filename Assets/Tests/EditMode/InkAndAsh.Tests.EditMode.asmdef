@@ -9,7 +9,9 @@
         "InkAndAsh.Combat",
         "InkAndAsh.Economy",
         "InkAndAsh.World",
-        "InkAndAsh.Narrative"
+        "InkAndAsh.Narrative",
+        "InkAndAsh.UI",
+        "InkAndAsh.Prologue"
     ],
     "includePlatforms": [
         "Editor"

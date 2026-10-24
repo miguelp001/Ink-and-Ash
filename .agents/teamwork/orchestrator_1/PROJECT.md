@@ -164,7 +164,7 @@ d:\Unity Projects\Ink and Ash\
 | M1 | Foundation Layer (R1 & R2) | Scaffolding, manifest.json, 7 gameplay asmdefs, test asmdef, SDK csproj, data models, 16 items JSON, NPCs JSON, Quests JSON, Biomes JSON, DataManager | None | DONE |
 | M2 | Core Runtime Systems (R3) | GameManager, TimeManager, Event Channels, WeatherSystem, CaravanInventory, pure C# CtbCombatEngine | M1 | DONE |
 | M3 | Unit Testing & Verification (R4) | EditMode Unit Test Suite (InkAndAsh.Tests.EditMode), standalone runner, all test suites | M1, M2 | DONE |
-| M4 | Git Repository & GitHub Setup (R5) | Git re-init, .gitignore, initial commit, GitHub push to miguelp001/ink-and-ash via gh | M1-M3 | IN_PROGRESS |
+| M4 | Git Repository & GitHub Setup (R5) | Git re-init, .gitignore, initial commit, GitHub push to miguelp001/ink-and-ash via gh | M1-M3 | DONE |
 | E2E | Opaque-Box E2E Testing Track | Independent requirement-driven test infra, Tiers 1-4 test cases, TEST_READY.md | None (Parallel) | DONE |
 
 ---

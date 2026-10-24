@@ -1,0 +1,23 @@
+{
+    "name": "InkAndAsh.Prologue",
+    "rootNamespace": "InkAndAsh.Prologue",
+    "references": [
+        "InkAndAsh.Core",
+        "InkAndAsh.Data",
+        "InkAndAsh.Combat",
+        "InkAndAsh.Economy",
+        "InkAndAsh.World",
+        "InkAndAsh.Narrative",
+        "InkAndAsh.UI",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

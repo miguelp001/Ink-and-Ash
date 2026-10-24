@@ -26,15 +26,15 @@ Orchestrate the complete, high-integrity implementation of "The Ink and the Ash"
    - Escalate: N/A (Top-level orchestrator redesigns on failure)
 4. **Succession**: At 16 spawns, write handoff.md, spawn successor.
 - **Work items**:
-  1. Survey & Architecture Specification [in-progress]
-  2. Milestone 1: Project Structure, Asmdefs, Manifest [pending]
-  3. Milestone 2: Data Models & JSON Catalogs [pending]
-  4. Milestone 3: Core Runtime Systems [pending]
-  5. Milestone 4: EditMode Unit Tests & Verification [pending]
-  6. Milestone 5: Git Repository & GitHub Push [pending]
-  7. Milestone 6: Final Verification & Integration [pending]
-- **Current phase**: 0 (Survey)
-- **Current focus**: Initial Survey & Architecture Mapping
+  1. Survey & Architecture Specification [done]
+  2. Milestone 1: Project Structure, Asmdefs, Manifest [done]
+  3. Milestone 2: Data Models & JSON Catalogs [done]
+  4. Milestone 3: Core Runtime Systems [done]
+  5. Milestone 4: EditMode Unit Tests & Verification [done]
+  6. Milestone 5: Git Repository & GitHub Push [done]
+  7. Milestone 6: Final Verification & Integration [done]
+- **Current phase**: 4 (Parent Completion Reporting)
+- **Current focus**: Complete & Delivered
 
 ## 🔒 Key Constraints
 - Never write, modify, or create source code files directly.
@@ -82,12 +82,17 @@ Orchestrate the complete, high-integrity implementation of "The Ink and the Ash"
 | challenger_m3_iter2_1 | teamwork_preview_challenger | M3 Iter2 Execution & Timing Challenge | in-progress | 7ee3f895-e5bf-4e9d-99e5-2e73fc0c60de |
 | challenger_m3_iter2_2 | teamwork_preview_challenger | M3 Iter2 FIFO Multi-Stack Challenge | in-progress | 9ccc4725-7ef8-4051-97c3-8781fcd8474d |
 | auditor_m3_iter2_1 | teamwork_preview_auditor | M3 Iter2 Forensic Integrity Audit | completed | 3d567a95-1030-498b-8a2c-b9233113ff94 |
-| worker_m4 | teamwork_preview_worker | M4 Git Repository & GitHub Setup | in-progress | be418b2f-6d78-48ad-b9c3-96ee03dde30b |
+| worker_m4 | teamwork_preview_worker | M4 Git Repository & GitHub Setup | completed | be418b2f-6d78-48ad-b9c3-96ee03dde30b |
+| reviewer_m4_1 | teamwork_preview_reviewer | M4 Review & Git Conformance | completed | cc96473e-1d08-42cf-9bae-f63111d3a0d6 |
+| reviewer_m4_2 | teamwork_preview_reviewer | M4 Review & Repo Completeness | completed | dbc28d41-8d2d-4185-a3f0-47ba59744485 |
+| challenger_m4_1 | teamwork_preview_challenger | M4 Git & Test Execution Stress | completed | 46fbaee9-09f8-4d88-be1c-aeffac68fbb1 |
+| challenger_m4_2 | teamwork_preview_challenger | M4 GitIgnore & Remote Stress | completed | 78df5e97-6523-4270-bcf5-56f28d12ef81 |
+| auditor_m4_1 | teamwork_preview_auditor | M4 Forensic Integrity Audit | completed | 0e83e5d3-b3d8-48fa-ac13-1161292d705c |
 
 ## Succession Status
 - Succession required: no (single orchestrator lifecycle active; self-spawn not supported by environment)
-- Spawn count: 29 / 128
-- Pending subagents: be418b2f-6d78-48ad-b9c3-96ee03dde30b
+- Spawn count: 34 / 128
+- Pending subagents: none
 - Predecessor: none
 - Successor: none (orchestrator continuing)
 
