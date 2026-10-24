@@ -62,24 +62,16 @@ namespace InkAndAsh.Core
             bool pointerDown = false;
             Vector2 screenPos = Vector2.zero;
 
-#if ENABLE_INPUT_SYSTEM
-            if (UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                pointerDown = true;
-                screenPos = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
-            }
-            else if (UnityEngine.InputSystem.Touchscreen.current != null && UnityEngine.InputSystem.Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
-            {
-                pointerDown = true;
-                screenPos = UnityEngine.InputSystem.Touchscreen.current.primaryTouch.position.ReadValue();
-            }
-#else
             if (Input.GetMouseButtonDown(0))
             {
                 pointerDown = true;
                 screenPos = Input.mousePosition;
             }
-#endif
+            else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                pointerDown = true;
+                screenPos = Input.GetTouch(0).position;
+            }
 
             if (!pointerDown || _mainCamera == null) return;
 
@@ -107,21 +99,8 @@ namespace InkAndAsh.Core
 
         private void HandleDirectionalInput()
         {
-            float horizontal = 0f;
-            float vertical = 0f;
-
-#if ENABLE_INPUT_SYSTEM
-            if (UnityEngine.InputSystem.Keyboard.current != null)
-            {
-                if (UnityEngine.InputSystem.Keyboard.current.wKey.isPressed || UnityEngine.InputSystem.Keyboard.current.upArrowKey.isPressed) vertical += 1f;
-                if (UnityEngine.InputSystem.Keyboard.current.sKey.isPressed || UnityEngine.InputSystem.Keyboard.current.downArrowKey.isPressed) vertical -= 1f;
-                if (UnityEngine.InputSystem.Keyboard.current.dKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightArrowKey.isPressed) horizontal += 1f;
-                if (UnityEngine.InputSystem.Keyboard.current.aKey.isPressed || UnityEngine.InputSystem.Keyboard.current.leftArrowKey.isPressed) horizontal -= 1f;
-            }
-#else
-            horizontal = Input.GetAxisRaw("Horizontal");
-            vertical = Input.GetAxisRaw("Vertical");
-#endif
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
             Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
             if (inputDir.sqrMagnitude > 0.01f && _mainCamera != null)
