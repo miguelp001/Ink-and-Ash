@@ -23,8 +23,26 @@ namespace InkAndAsh.Prologue.Editor
     {
         private const string ScenePath = "Assets/Scenes/Prologue_GrasslandsTemple.unity";
 
+        [InitializeOnLoadMethod]
+        private static void OnEditorLoaded()
+        {
+            EditorApplication.delayCall += () =>
+            {
+                if (!File.Exists(ScenePath))
+                {
+                    Debug.Log("[Ink and Ash] Automatically building and loading Prologue_GrasslandsTemple.unity...");
+                    BuildPrologueSceneInternal(false);
+                }
+            };
+        }
+
         [MenuItem("Ink and Ash/Build Prologue Scene (Minutes 0-10)", false, 10)]
         public static void BuildPrologueScene()
+        {
+            BuildPrologueSceneInternal(true);
+        }
+
+        public static void BuildPrologueSceneInternal(bool showDialog)
         {
             string scenesDir = Path.GetDirectoryName(ScenePath);
             if (!Directory.Exists(scenesDir))
@@ -81,11 +99,20 @@ namespace InkAndAsh.Prologue.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
             AssetDatabase.Refresh();
 
-            EditorUtility.DisplayDialog("Ink and Ash: Prologue Scene", 
-                "The complete Prologue Scene (Minutes 0-10) has been built and saved to:\n" + ScenePath + 
-                "\n\nYou can now hit Play to experience the full vertical slice loop!", "Open Scene");
+            Debug.Log($"[Ink and Ash] Successfully built and loaded {ScenePath}!");
 
-            Selection.activeGameObject = director.gameObject;
+            if (showDialog)
+            {
+                EditorUtility.DisplayDialog("Ink and Ash: Prologue Scene", 
+                    "The complete Prologue Scene (Minutes 0-10) has been built and saved to:\n" + ScenePath + 
+                    "\n\nYou can now hit Play to experience the full vertical slice loop!", "Open Scene");
+            }
+
+            PrologueDirector loadedDirector = UnityEngine.Object.FindAnyObjectByType<PrologueDirector>();
+            if (loadedDirector != null)
+            {
+                Selection.activeGameObject = loadedDirector.gameObject;
+            }
         }
 
         private static void SetupLighting()
@@ -289,7 +316,7 @@ namespace InkAndAsh.Prologue.Editor
             canvasObj.AddComponent<GraphicRaycaster>();
 
             // EventSystem
-            if (UnityEngine.Object.FindFirstObjectByType<UnityEngine.EventSystems.EventSystem>() == null)
+            if (UnityEngine.Object.FindAnyObjectByType<UnityEngine.EventSystems.EventSystem>() == null)
             {
                 GameObject esObj = new GameObject("EventSystem");
                 esObj.AddComponent<UnityEngine.EventSystems.EventSystem>();
@@ -505,7 +532,7 @@ namespace InkAndAsh.Prologue.Editor
 
         private static void BakeNavMesh(Transform sanctuary, Transform crypt)
         {
-            var surfaces = UnityEngine.Object.FindObjectsByType<NavMeshSurface>(FindObjectsSortMode.None);
+            var surfaces = UnityEngine.Object.FindObjectsByType<NavMeshSurface>();
             foreach (var s in surfaces)
             {
                 s.BuildNavMesh();

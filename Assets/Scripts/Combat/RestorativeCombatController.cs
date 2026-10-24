@@ -32,7 +32,6 @@ namespace InkAndAsh.Combat
         public float spiritArousal = 80f;
         public float spiritDominance = 20f;
 
-        [Header("Events")]
         public event Action<Combatant> OnTurnReady;
         public event Action<string, string> OnCombatDialogue;
         public event Action<float> OnUnburdenProgressChanged;
