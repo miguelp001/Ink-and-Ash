@@ -66,11 +66,11 @@ namespace InkAndAsh.Core
         {
             if (_instance != null && _instance != this)
             {
-                UnityEngine.Destroy(gameObject);
+                Destroy(gameObject);
                 return;
             }
             _instance = this;
-            UnityEngine.DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 #endif
 
