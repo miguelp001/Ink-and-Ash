@@ -1,0 +1,240 @@
+[
+  {
+    "biomeId": "biome_grasslands",
+    "name": "The Grasslands",
+    "spireName": "Verdant Spire",
+    "spoilageMultiplier": 1.0,
+    "staminaDrainMultiplier": 1.0,
+    "travelSpeedModifier": 1.0,
+    "hazardRating": 1,
+    "spireCalibrated": false,
+    "weatherHazards": [
+      {
+        "hazardName": "Mild Breeze",
+        "weatherState": "Clear",
+        "probability": 0.7,
+        "spoilageModifier": 1.0,
+        "staminaDrainModifier": 1.0
+      },
+      {
+        "hazardName": "Gentle Shower",
+        "weatherState": "Rain",
+        "probability": 0.25,
+        "spoilageModifier": 1.2,
+        "staminaDrainModifier": 1.1
+      },
+      {
+        "hazardName": "Prairie Thunderstorm",
+        "weatherState": "Storm",
+        "probability": 0.05,
+        "spoilageModifier": 1.4,
+        "staminaDrainModifier": 1.3
+      }
+    ],
+    "primaryResources": [ "item_golden_barley", "item_coarse_fiber" ]
+  },
+  {
+    "biomeId": "biome_coast",
+    "name": "The Coast",
+    "spireName": "Tidal Spire",
+    "spoilageMultiplier": 1.5,
+    "staminaDrainMultiplier": 1.1,
+    "travelSpeedModifier": 0.9,
+    "hazardRating": 2,
+    "spireCalibrated": false,
+    "weatherHazards": [
+      {
+        "hazardName": "Salt Spray Fog",
+        "weatherState": "Fog",
+        "probability": 0.4,
+        "spoilageModifier": 1.5,
+        "staminaDrainModifier": 1.1
+      },
+      {
+        "hazardName": "Coastal Rain",
+        "weatherState": "Rain",
+        "probability": 0.4,
+        "spoilageModifier": 1.5,
+        "staminaDrainModifier": 1.2
+      },
+      {
+        "hazardName": "Ocean Sun",
+        "weatherState": "Clear",
+        "probability": 0.2,
+        "spoilageModifier": 1.0,
+        "staminaDrainModifier": 1.0
+      }
+    ],
+    "primaryResources": [ "item_sun_dried_kelp" ]
+  },
+  {
+    "biomeId": "biome_forest",
+    "name": "The Forest",
+    "spireName": "Sylvan Spire",
+    "spoilageMultiplier": 1.1,
+    "staminaDrainMultiplier": 1.2,
+    "travelSpeedModifier": 0.85,
+    "hazardRating": 2,
+    "spireCalibrated": false,
+    "weatherHazards": [
+      {
+        "hazardName": "Canopy Shade",
+        "weatherState": "Clear",
+        "probability": 0.5,
+        "spoilageModifier": 1.0,
+        "staminaDrainModifier": 1.0
+      },
+      {
+        "hazardName": "Damp Drizzle",
+        "weatherState": "Rain",
+        "probability": 0.3,
+        "spoilageModifier": 1.2,
+        "staminaDrainModifier": 1.2
+      },
+      {
+        "hazardName": "Filtered Sunlight",
+        "weatherState": "Clear",
+        "probability": 0.2,
+        "spoilageModifier": 1.0,
+        "staminaDrainModifier": 1.0
+      }
+    ],
+    "primaryResources": [ "item_ironwood_resin", "item_timber_logs" ]
+  },
+  {
+    "biomeId": "biome_mountains",
+    "name": "The Mountains",
+    "spireName": "Frost Spire",
+    "spoilageMultiplier": 0.2,
+    "staminaDrainMultiplier": 2.0,
+    "travelSpeedModifier": 0.7,
+    "hazardRating": 4,
+    "spireCalibrated": false,
+    "weatherHazards": [
+      {
+        "hazardName": "Subzero Frost",
+        "weatherState": "Freezing",
+        "probability": 0.5,
+        "spoilageModifier": 0.2,
+        "staminaDrainModifier": 2.0
+      },
+      {
+        "hazardName": "High Altitude Blizzard",
+        "weatherState": "Blizzard",
+        "probability": 0.3,
+        "spoilageModifier": 0.2,
+        "staminaDrainModifier": 2.5
+      },
+      {
+        "hazardName": "Alpine Sunlight",
+        "weatherState": "Clear",
+        "probability": 0.2,
+        "spoilageModifier": 0.5,
+        "staminaDrainModifier": 1.5
+      }
+    ],
+    "primaryResources": [ "item_glacier_salt" ]
+  },
+  {
+    "biomeId": "biome_swamp",
+    "name": "The Swamp",
+    "spireName": "Mire Spire",
+    "spoilageMultiplier": 1.5,
+    "staminaDrainMultiplier": 1.5,
+    "travelSpeedModifier": 0.65,
+    "hazardRating": 3,
+    "spireCalibrated": false,
+    "weatherHazards": [
+      {
+        "hazardName": "Stagnant Mire Mist",
+        "weatherState": "Fog",
+        "probability": 0.45,
+        "spoilageModifier": 1.5,
+        "staminaDrainModifier": 1.5
+      },
+      {
+        "hazardName": "Warm Torrential Rain",
+        "weatherState": "Rain",
+        "probability": 0.45,
+        "spoilageModifier": 1.6,
+        "staminaDrainModifier": 1.6
+      },
+      {
+        "hazardName": "Humid Clearing",
+        "weatherState": "Clear",
+        "probability": 0.1,
+        "spoilageModifier": 1.3,
+        "staminaDrainModifier": 1.2
+      }
+    ],
+    "primaryResources": [ "item_bog_ash" ]
+  },
+  {
+    "biomeId": "biome_desert",
+    "name": "The Desert",
+    "spireName": "Sun Spire",
+    "spoilageMultiplier": 1.5,
+    "staminaDrainMultiplier": 1.8,
+    "travelSpeedModifier": 0.8,
+    "hazardRating": 4,
+    "spireCalibrated": false,
+    "weatherHazards": [
+      {
+        "hazardName": "Scorching Sun",
+        "weatherState": "Heat",
+        "probability": 0.6,
+        "spoilageModifier": 1.5,
+        "staminaDrainModifier": 1.8
+      },
+      {
+        "hazardName": "Dune Sandstorm",
+        "weatherState": "Storm",
+        "probability": 0.3,
+        "spoilageModifier": 1.3,
+        "staminaDrainModifier": 2.2
+      },
+      {
+        "hazardName": "Arid Twilight",
+        "weatherState": "Clear",
+        "probability": 0.1,
+        "spoilageModifier": 1.0,
+        "staminaDrainModifier": 1.1
+      }
+    ],
+    "primaryResources": [ "item_solar_clay" ]
+  },
+  {
+    "biomeId": "biome_jungle",
+    "name": "The Jungle",
+    "spireName": "Canopy Spire",
+    "spoilageMultiplier": 1.6,
+    "staminaDrainMultiplier": 1.6,
+    "travelSpeedModifier": 0.75,
+    "hazardRating": 3,
+    "spireCalibrated": false,
+    "weatherHazards": [
+      {
+        "hazardName": "Monsoon Downpour",
+        "weatherState": "Rain",
+        "probability": 0.5,
+        "spoilageModifier": 1.6,
+        "staminaDrainModifier": 1.6
+      },
+      {
+        "hazardName": "Oppressive Vapor",
+        "weatherState": "Heat",
+        "probability": 0.4,
+        "spoilageModifier": 1.6,
+        "staminaDrainModifier": 1.7
+      },
+      {
+        "hazardName": "High Branch Sunshine",
+        "weatherState": "Clear",
+        "probability": 0.1,
+        "spoilageModifier": 1.2,
+        "staminaDrainModifier": 1.2
+      }
+    ],
+    "primaryResources": [ "item_canopy_bloom" ]
+  }
+]

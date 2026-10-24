@@ -1,0 +1,285 @@
+[
+  {
+    "itemId": "item_golden_barley",
+    "name": "Golden Barley",
+    "primaryBiome": "The Grasslands",
+    "baseWeightKg": 1.0,
+    "decayRatePerMinute": 0.002,
+    "isPerishable": true,
+    "usageCategories": [ "Trade", "Culinary" ],
+    "basePrice": 10,
+    "biomePriceModifiers": {
+      "The Grasslands": 1.0,
+      "The Mountains": 2.0,
+      "The Desert": 1.8,
+      "The Coast": 1.3
+    },
+    "description": "Sun-ripened grain gathered from the central plains before imperial tithe wagons arrive.",
+    "storageNotes": "Keep dry in standard sacks to slow spoilage."
+  },
+  {
+    "itemId": "item_sun_dried_kelp",
+    "name": "Sun-Dried Kelp",
+    "primaryBiome": "The Coast",
+    "baseWeightKg": 0.5,
+    "decayRatePerMinute": 0.001,
+    "isPerishable": true,
+    "usageCategories": [ "Trade", "Crafting", "Culinary", "Alchemy" ],
+    "basePrice": 12,
+    "biomePriceModifiers": {
+      "The Coast": 1.0,
+      "The Mountains": 2.2,
+      "The Desert": 1.9,
+      "The Forest": 1.4
+    },
+    "description": "Salt-crusted sea strips dried on coastal stone racks.",
+    "storageNotes": "Vulnerable to high humidity and rain."
+  },
+  {
+    "itemId": "item_ironwood_resin",
+    "name": "Ironwood Resin",
+    "primaryBiome": "The Forest",
+    "baseWeightKg": 0.8,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Crafting", "Alchemy" ],
+    "basePrice": 25,
+    "biomePriceModifiers": {
+      "The Forest": 1.0,
+      "The Grasslands": 1.5,
+      "The Desert": 1.8,
+      "The Coast": 1.4
+    },
+    "description": "Thick amber sap harvested from old-growth ironwood trunks.",
+    "storageNotes": "Stable cargo; does not spoil."
+  },
+  {
+    "itemId": "item_glacier_salt",
+    "name": "Glacier Salt",
+    "primaryBiome": "The Mountains",
+    "baseWeightKg": 1.5,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Culinary", "Alchemy" ],
+    "basePrice": 30,
+    "biomePriceModifiers": {
+      "The Mountains": 1.0,
+      "The Swamp": 2.5,
+      "The Jungle": 2.2,
+      "The Desert": 2.0
+    },
+    "description": "Coarse crystalline salt chipped from high glacial ridges; essential for meat preservation.",
+    "storageNotes": "Non-perishable mineral; seal against moisture."
+  },
+  {
+    "itemId": "item_bog_ash",
+    "name": "Bog Ash",
+    "primaryBiome": "The Swamp",
+    "baseWeightKg": 1.0,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Crafting", "Alchemy" ],
+    "basePrice": 18,
+    "biomePriceModifiers": {
+      "The Swamp": 1.0,
+      "The Grasslands": 1.8,
+      "The Mountains": 1.6,
+      "The Forest": 1.4
+    },
+    "description": "Dark mineral ash collected from slow-burning peat fires in the mire.",
+    "storageNotes": "Stable dry powder."
+  },
+  {
+    "itemId": "item_solar_clay",
+    "name": "Solar Clay",
+    "primaryBiome": "The Desert",
+    "baseWeightKg": 3.0,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Crafting" ],
+    "basePrice": 20,
+    "biomePriceModifiers": {
+      "The Desert": 1.0,
+      "The Mountains": 2.4,
+      "The Swamp": 2.0,
+      "The Coast": 1.6
+    },
+    "description": "Dense heat-absorbing clay dug from sun-baked desert pans.",
+    "storageNotes": "Heavy bulk load for carriage haulage."
+  },
+  {
+    "itemId": "item_canopy_bloom",
+    "name": "Canopy Bloom",
+    "primaryBiome": "The Jungle",
+    "baseWeightKg": 0.2,
+    "decayRatePerMinute": 0.02,
+    "isPerishable": true,
+    "usageCategories": [ "Trade", "Crafting", "Culinary", "Alchemy" ],
+    "basePrice": 35,
+    "biomePriceModifiers": {
+      "The Jungle": 1.0,
+      "The Desert": 2.5,
+      "The Mountains": 2.2,
+      "The Grasslands": 1.8
+    },
+    "description": "Fragile luminescent flower plucked from high jungle branches.",
+    "storageNotes": "Wilts rapidly outside humid conditions."
+  },
+  {
+    "itemId": "item_wild_game_meat",
+    "name": "Wild Game Meat",
+    "primaryBiome": "Universal",
+    "baseWeightKg": 2.0,
+    "decayRatePerMinute": 0.03,
+    "isPerishable": true,
+    "usageCategories": [ "Trade", "Culinary" ],
+    "basePrice": 15,
+    "biomePriceModifiers": {
+      "Universal": 1.0,
+      "The Desert": 2.0,
+      "The Mountains": 1.5
+    },
+    "description": "Fresh dressed venison and fowl hunted along the road.",
+    "storageNotes": "Decays quickly without cold or salt."
+  },
+  {
+    "itemId": "item_fresh_river_fish",
+    "name": "Fresh River Fish",
+    "primaryBiome": "Universal",
+    "baseWeightKg": 1.5,
+    "decayRatePerMinute": 0.035,
+    "isPerishable": true,
+    "usageCategories": [ "Trade", "Culinary" ],
+    "basePrice": 14,
+    "biomePriceModifiers": {
+      "Universal": 1.0,
+      "The Desert": 2.2,
+      "The Mountains": 1.8
+    },
+    "description": "Cold-water river trout caught during morning stops.",
+    "storageNotes": "Extreme perishability; cook promptly."
+  },
+  {
+    "itemId": "item_spring_water",
+    "name": "Spring Water",
+    "primaryBiome": "Universal",
+    "baseWeightKg": 2.5,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Culinary", "Alchemy" ],
+    "basePrice": 8,
+    "biomePriceModifiers": {
+      "Universal": 1.0,
+      "The Desert": 3.0
+    },
+    "description": "Clean drinking water drawn from roadside stone basins.",
+    "storageNotes": "Carried in sealed casks."
+  },
+  {
+    "itemId": "item_aromatic_herbs",
+    "name": "Aromatic Herbs",
+    "primaryBiome": "Universal",
+    "baseWeightKg": 0.3,
+    "decayRatePerMinute": 0.01,
+    "isPerishable": true,
+    "usageCategories": [ "Trade", "Culinary", "Alchemy" ],
+    "basePrice": 16,
+    "biomePriceModifiers": {
+      "Universal": 1.0,
+      "The Mountains": 1.8,
+      "The Coast": 1.4
+    },
+    "description": "Bundles of wild thyme, sage and mint gathered along hedgerows.",
+    "storageNotes": "Leaves wilt over successive days."
+  },
+  {
+    "itemId": "item_timber_logs",
+    "name": "Timber Logs",
+    "primaryBiome": "The Forest",
+    "baseWeightKg": 10.0,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Crafting" ],
+    "basePrice": 12,
+    "biomePriceModifiers": {
+      "The Forest": 1.0,
+      "The Desert": 2.5,
+      "The Grasslands": 1.6
+    },
+    "description": "Seasoned hardwood logs for carriage repairs and hearth fires.",
+    "storageNotes": "Heavy bulk cargo."
+  },
+  {
+    "itemId": "item_scrap_iron",
+    "name": "Scrap Iron",
+    "primaryBiome": "Imperial Posts",
+    "baseWeightKg": 5.0,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Crafting" ],
+    "basePrice": 28,
+    "biomePriceModifiers": {
+      "Imperial Posts": 1.0,
+      "The Swamp": 2.2,
+      "The Jungle": 2.0
+    },
+    "description": "Discarded wheel rims, bent nails and wagon fittings.",
+    "storageNotes": "Non-perishable smithing stock."
+  },
+  {
+    "itemId": "item_coarse_fiber",
+    "name": "Coarse Fiber",
+    "primaryBiome": "The Grasslands",
+    "baseWeightKg": 1.0,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Crafting" ],
+    "basePrice": 10,
+    "biomePriceModifiers": {
+      "The Grasslands": 1.0,
+      "The Mountains": 1.7,
+      "The Jungle": 1.5
+    },
+    "description": "Rough hemp and nettle twine for mending harness and sacks.",
+    "storageNotes": "Durable woven material."
+  },
+  {
+    "itemId": "item_tallow_wax",
+    "name": "Tallow Wax",
+    "primaryBiome": "Universal",
+    "baseWeightKg": 0.8,
+    "decayRatePerMinute": 0.002,
+    "isPerishable": true,
+    "usageCategories": [ "Trade", "Crafting", "Alchemy" ],
+    "basePrice": 14,
+    "biomePriceModifiers": {
+      "Universal": 1.0,
+      "The Mountains": 1.8,
+      "The Desert": 1.6
+    },
+    "description": "Rendered fat cakes used for candles and axle grease.",
+    "storageNotes": "Softens and melts under desert sun."
+  },
+  {
+    "itemId": "item_imperial_ink",
+    "name": "Imperial Ink",
+    "primaryBiome": "Imperial Posts",
+    "baseWeightKg": 0.5,
+    "decayRatePerMinute": 0.0,
+    "isPerishable": false,
+    "usageCategories": [ "Trade", "Crafting" ],
+    "basePrice": 50,
+    "biomePriceModifiers": {
+      "Imperial Posts": 1.0,
+      "The Grasslands": 2.0,
+      "The Coast": 2.0,
+      "The Forest": 2.0,
+      "The Mountains": 2.0,
+      "The Swamp": 2.0,
+      "The Desert": 2.0,
+      "The Jungle": 2.0
+    },
+    "description": "Iron gall ink bottled in dark glass with an official tax seal.",
+    "storageNotes": "Precious cargo; handle carefully."
+  }
+]

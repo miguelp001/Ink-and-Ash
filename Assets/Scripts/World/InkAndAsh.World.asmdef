@@ -1,0 +1,17 @@
+{
+    "name": "InkAndAsh.World",
+    "rootNamespace": "InkAndAsh.World",
+    "references": [
+        "InkAndAsh.Core",
+        "InkAndAsh.Data"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

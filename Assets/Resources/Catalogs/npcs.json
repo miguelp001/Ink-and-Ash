@@ -1,0 +1,110 @@
+[
+  {
+    "npcId": "npc_core_vesper_01",
+    "tier": 1,
+    "name": "Vesper the Weaver",
+    "homeBiome": "The Forest",
+    "factionAffiliation": "TheBurdened",
+    "padEmotionalState": {
+      "pleasure": -20.0,
+      "arousal": 40.0,
+      "dominance": -10.0
+    },
+    "relationshipVectors": {
+      "imperialFear": 65.0,
+      "factionTrust": 45.0
+    },
+    "dialogueTreeBranches": [
+      {
+        "branchId": "dlg_vesper_intro",
+        "triggerCondition": "always",
+        "dialogueText": "The threads we carry snap under tension. The empire counts every yard of linen, but never the hands that grew raw spinning it.",
+        "availableResponses": [
+          {
+            "responseId": "resp_vesper_comfort",
+            "text": "Rest by the fire tonight, Vesper. We share the watch and the load.",
+            "targetPadDelta": {
+              "pleasure": 20.0,
+              "arousal": -15.0,
+              "dominance": 10.0
+            },
+            "nextQuestState": "",
+            "nextBranchId": "dlg_vesper_relieved"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "npcId": "npc_anchor_kael_01",
+    "tier": 2,
+    "name": "Kaelen the Miller",
+    "homeBiome": "The Grasslands",
+    "factionAffiliation": "Pragmatists",
+    "padEmotionalState": {
+      "pleasure": -15.0,
+      "arousal": 45.0,
+      "dominance": -30.0
+    },
+    "relationshipVectors": {
+      "imperialFear": 75.0,
+      "factionTrust": 20.0
+    },
+    "dialogueTreeBranches": [
+      {
+        "branchId": "dlg_kael_act1_intro",
+        "triggerCondition": "pad_emotional_state.arousal > 30.0",
+        "dialogueText": "The imperial tax collectors took half the harvest. If the mill stops turning, the village starves before first freeze.",
+        "availableResponses": [
+          {
+            "responseId": "resp_offer_grain",
+            "text": "We have Golden Barley in our carriage. Let us share what we carry.",
+            "targetPadDelta": {
+              "pleasure": 25.0,
+              "arousal": -20.0,
+              "dominance": 10.0
+            },
+            "nextQuestState": "Ripple",
+            "nextBranchId": "dlg_kael_act1_accept"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "npcId": "npc_bg_elda_01",
+    "tier": 3,
+    "name": "Elda the Ferryhand",
+    "homeBiome": "The Swamp",
+    "factionAffiliation": "Outsiders",
+    "padEmotionalState": {
+      "pleasure": 10.0,
+      "arousal": -10.0,
+      "dominance": 0.0
+    },
+    "relationshipVectors": {
+      "imperialFear": 30.0,
+      "factionTrust": 60.0
+    },
+    "dialogueTreeBranches": [
+      {
+        "branchId": "dlg_elda_rumor",
+        "triggerCondition": "always",
+        "dialogueText": "Word travels upriver faster than my skiff. They say a Vicar carries grain without demanding tax receipts.",
+        "availableResponses": [
+          {
+            "responseId": "resp_elda_thanks",
+            "text": "We pass freely and leave full bellies behind us.",
+            "targetPadDelta": {
+              "pleasure": 10.0,
+              "arousal": 0.0,
+              "dominance": 5.0
+            },
+            "nextQuestState": "",
+            "nextBranchId": ""
+          }
+        ]
+      }
+    ]
+  }
+]
