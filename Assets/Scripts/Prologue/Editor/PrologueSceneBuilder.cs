@@ -324,7 +324,7 @@ namespace InkAndAsh.Prologue.Editor
             {
                 GameObject esObj = new GameObject("EventSystem");
                 esObj.AddComponent<UnityEngine.EventSystems.EventSystem>();
-                esObj.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+                esObj.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
             }
 
             // 1. Dialogue Panel

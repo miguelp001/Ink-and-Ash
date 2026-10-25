@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using InkAndAsh.Core.Interaction;
 
 namespace InkAndAsh.Core
@@ -25,7 +26,6 @@ namespace InkAndAsh.Core
         private Camera _mainCamera;
         private Interactable _pendingInteractable;
         private GameObject _activeMarker;
-        private bool _isInteracting;
 
         public bool CanMove { get; set; } = true;
         public bool IsMoving => _agent != null && _agent.hasPath && _agent.remainingDistance > _agent.stoppingDistance;
@@ -68,25 +68,33 @@ namespace InkAndAsh.Core
             bool pointerDown = false;
             Vector2 screenPos = Vector2.zero;
 
-            if (Input.GetMouseButtonDown(0))
+            // 1. New Input System (Mouse & Touchscreen)
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 pointerDown = true;
-                screenPos = Input.mousePosition;
+                screenPos = Mouse.current.position.ReadValue();
             }
-            else if (Input.touchCount > 0)
+            else if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
             {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
+                pointerDown = true;
+                screenPos = Touchscreen.current.primaryTouch.position.ReadValue();
+            }
+#if ENABLE_LEGACY_INPUT_MANAGER
+            // 2. Legacy Input fallback
+            if (!pointerDown)
+            {
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (UnityEngine.EventSystems.EventSystem.current != null && 
-                        UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-                    {
-                        return;
-                    }
                     pointerDown = true;
-                    screenPos = touch.position;
+                    screenPos = Input.mousePosition;
+                }
+                else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    pointerDown = true;
+                    screenPos = Input.GetTouch(0).position;
                 }
             }
+#endif
 
             if (!pointerDown || _mainCamera == null) return;
 
@@ -135,17 +143,45 @@ namespace InkAndAsh.Core
 
         private void HandleDirectionalInput()
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
+            Vector2 moveInput = Vector2.zero;
 
-            Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
-            if (inputDir.sqrMagnitude > 0.01f && _mainCamera != null)
+            // 1. New Input System Keyboard & Gamepad
+            if (Keyboard.current != null)
+            {
+                if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed) moveInput.y += 1f;
+                if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed) moveInput.y -= 1f;
+                if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) moveInput.x -= 1f;
+                if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) moveInput.x += 1f;
+            }
+
+            if (Gamepad.current != null)
+            {
+                Vector2 stick = Gamepad.current.leftStick.ReadValue();
+                if (stick.sqrMagnitude > moveInput.sqrMagnitude)
+                {
+                    moveInput = stick;
+                }
+            }
+
+#if ENABLE_LEGACY_INPUT_MANAGER
+            if (moveInput.sqrMagnitude < 0.01f)
+            {
+                float h = Input.GetAxisRaw("Horizontal");
+                float v = Input.GetAxisRaw("Vertical");
+                if (Mathf.Abs(h) > 0.01f || Mathf.Abs(v) > 0.01f)
+                {
+                    moveInput = new Vector2(h, v);
+                }
+            }
+#endif
+
+            if (moveInput.sqrMagnitude > 0.01f && _mainCamera != null)
             {
                 ClearPendingInteraction();
 
                 Vector3 cameraForward = Vector3.ProjectOnPlane(_mainCamera.transform.forward, Vector3.up).normalized;
                 Vector3 cameraRight = Vector3.ProjectOnPlane(_mainCamera.transform.right, Vector3.up).normalized;
-                Vector3 moveDir = (cameraForward * inputDir.z + cameraRight * inputDir.x).normalized;
+                Vector3 moveDir = (cameraForward * moveInput.y + cameraRight * moveInput.x).normalized;
 
                 Vector3 targetPoint = transform.position + moveDir * 2.0f;
                 if (NavMesh.SamplePosition(targetPoint, out NavMeshHit navHit, 2.0f, NavMesh.AllAreas))
@@ -162,7 +198,17 @@ namespace InkAndAsh.Core
             {
                 _agent.stoppingDistance = 0.2f;
                 _agent.isStopped = false;
-                _agent.SetDestination(navHit.position);
+
+                NavMeshPath path = new NavMeshPath();
+                if (NavMesh.CalculatePath(transform.position, navHit.position, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    _agent.SetPath(path);
+                }
+                else
+                {
+                    _agent.SetDestination(navHit.position);
+                }
+
                 SpawnDestinationMarker(navHit.position);
             }
         }
@@ -172,7 +218,17 @@ namespace InkAndAsh.Core
             _pendingInteractable = interactable;
             _agent.stoppingDistance = interactable.InteractionDistance * 0.85f;
             _agent.isStopped = false;
-            _agent.SetDestination(interactable.InteractionPosition);
+
+            NavMeshPath path = new NavMeshPath();
+            if (NavMesh.CalculatePath(transform.position, interactable.InteractionPosition, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete)
+            {
+                _agent.SetPath(path);
+            }
+            else
+            {
+                _agent.SetDestination(interactable.InteractionPosition);
+            }
+
             SpawnDestinationMarker(interactable.InteractionPosition);
         }
 
@@ -212,7 +268,7 @@ namespace InkAndAsh.Core
                 if (candidate != null)
                 {
                     float dist = Vector3.Distance(point, candidate.InteractionPosition);
-                    if (dist < minDistance && dist <= candidate.MagnetismRadius)
+                    if (dist < minDistance && dist <= candidate.MagnetismRadius && dist <= radius)
                     {
                         minDistance = dist;
                         nearest = candidate;

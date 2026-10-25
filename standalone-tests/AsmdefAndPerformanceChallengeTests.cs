@@ -96,7 +96,8 @@ namespace InkAndAsh.StandaloneTests
 
             // Verify specific architectural layer rules
             // InkAndAsh.Core must NOT reference any internal assemblies
-            Assert.That(graph["InkAndAsh.Core"].Count, Is.EqualTo(0), "InkAndAsh.Core must have zero dependencies.");
+            var coreInternalRefs = graph["InkAndAsh.Core"].Where(r => internalAssemblies.Contains(r)).ToList();
+            Assert.That(coreInternalRefs.Count, Is.EqualTo(0), "InkAndAsh.Core must have zero internal dependencies.");
 
             // InkAndAsh.Data must ONLY reference InkAndAsh.Core
             var dataRefs = graph["InkAndAsh.Data"].Where(r => internalAssemblies.Contains(r)).ToList();
